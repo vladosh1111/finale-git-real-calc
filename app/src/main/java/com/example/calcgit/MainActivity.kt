@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import java.lang.StringBuilder
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +30,15 @@ class MainActivity : AppCompatActivity() {
         val mns = findViewById<Button>(R.id.minus)
         val tims = findViewById<Button>(R.id.times)
         val divid = findViewById<Button>(R.id.divide)
+        val coler = findViewById<Button>(R.id.cover)
+        val coler2 = findViewById<Button>(R.id.cover2)
         var hh = ""
+
+
+        egual.setOnClickListener(){
+            val gg: Int = hh.toInt()
+            text.text = gg.toString()
+        }
 
 
         clear.setOnClickListener(){
@@ -37,7 +46,8 @@ class MainActivity : AppCompatActivity() {
             text.text = ""
         }
 
-
+        delete.setOnClickListener(){
+        }
 
         nnum1.setOnClickListener(){
             hh = hh + "1"
@@ -97,6 +107,14 @@ class MainActivity : AppCompatActivity() {
         }
         divid.setOnClickListener(){
             hh = hh + "/"
+            text.text = hh
+        }
+        coler.setOnClickListener(){
+            hh = hh + "("
+            text.text = hh
+        }
+        coler2.setOnClickListener(){
+            hh = hh +")"
             text.text = hh
         }
 
