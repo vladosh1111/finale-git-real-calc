@@ -193,6 +193,24 @@
         app:layout_constraintTop_toBottomOf="@id/plus"
         app:layout_constraintRight_toRightOf="parent"
         />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/times"
+        android:text="x"
+        android:textSize="55sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/minus"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/divide"
+        android:text="/"
+        android:textSize="55sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/times"
+        />
 
 
 
