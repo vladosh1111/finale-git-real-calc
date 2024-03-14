@@ -30,83 +30,88 @@ class MainActivity : AppCompatActivity() {
         val mns = findViewById<Button>(R.id.minus)
         val tims = findViewById<Button>(R.id.times)
         val divid = findViewById<Button>(R.id.divide)
-        val coler = findViewById<Button>(R.id.cover)
-        val coler2 = findViewById<Button>(R.id.cover2)
-        var lis = mutableListOf<String>()
+        val lis = mutableListOf<String>()
         var oo = ""
         var hh = ""
 
 
 
         egual.setOnClickListener(){
+            if(lis.isNotEmpty()) {
+                val jj = mutableListOf<String>()
+                val pp = mutableListOf<String>()
+                val oo = mutableListOf<String>()
+                var sigh1 = ""
+                var l = ""
+                var num1 = 0.0
+                var num2 = 0.0
+                pp.add("")
+                for (gg in lis) {
+                    if (gg == "+" || gg == "-" || gg == "*" || gg == "/") {
+                        pp.add(gg)
+                        jj.add("|")
+                    } else {
+                        jj.add(gg)
+                    }
 
-            //val hh: Array<String> = arrayOf("1", "3", "2", "4", "+", "4", "-", "3", "3", "*", "5", "8", "0", "-", "4", "5", "/", "4")
-            val jj = mutableListOf<String>()
-            val pp = mutableListOf<String>()
-            val oo = mutableListOf<String>()
-            var sigh1 = ""
-            var l = ""
-            var num1 = 0
-            var nn = 0
 
-            var num2 = 0
-            pp.add("")
-            for (gg in lis) {
-                if (gg == "+" || gg == "-" || gg == "*" || gg == "/") {
-                    pp.add(gg)
-                    jj.add("|")
-                } else {
-                    jj.add(gg)
                 }
+                jj.add("|")
+                for (kk in jj) {
+                    if (kk != "|") {
+                        l = l + kk
+                    } else {
+                        oo.add(l)
+                        l = ""
+                    }
+                }
+                for (aa in oo.indices) {
+                    num2 = oo[aa].toDouble()
+                    sigh1 = pp[aa]
+                    when (sigh1) {
+                        "+" -> num1 = num1 + num2
+                        "-" -> num1 = num1 - num2
+                        "*" -> num1 = num1 * num2
+                        "/" -> num1 = num1 / num2
+                        "" -> num1 = num1 + num2
+                    }
+
+                    num2 = 0.0
+
+                }
+
+                lis.clear()
+                val res: String = num1.toString()
+                text.text = res
+                hh = res
+                lis.add(res)
 
 
             }
-            jj.add("|")
-            for (kk in jj) {
-                if (kk != "|") {
-                    l = l + kk
-                } else {
-                    oo.add(l)
-                    l = ""
-                }
+            else{
+                text.text = "ERROR"
             }
-            for (aa in oo.indices){
-
-                // if(aa % 2 == 0){
-                num2 = oo[aa].toInt()
-                sigh1 = pp[aa]
-                when(sigh1){
-                    "+" -> num1 = num1 + num2
-                    "-" -> num1 = num1 - num2
-                    "*" -> num1 = num1 * num2
-                    "/" -> num1 = num1 / num2
-                    "" -> num1 = num1 + num2
-                }
-
-                num2 = 0
-                nn = nn + 1
-
-            }
-            val res: String = num1.toString()
-            text.text = res
-            lis.clear()
-            lis.add(res)
-
-
-
         }
-
-
-
-
 
         clear.setOnClickListener(){
             hh = ""
             text.text = ""
+            lis.clear()
 
         }
 
         delete.setOnClickListener(){
+            hh = ""
+            text.text = ""
+            lis.removeAt(lis.size - 1)
+           for(pa in lis){
+               hh = hh + pa
+           }
+            text.text = hh
+
+
+
+
         }
 
         nnum1.setOnClickListener(){
@@ -184,16 +189,7 @@ class MainActivity : AppCompatActivity() {
             text.text = hh
             lis.add("/")
         }
-        coler.setOnClickListener(){
-            hh = hh + "("
-            text.text = hh
-            lis.add("(")
-        }
-        coler2.setOnClickListener(){
-            hh = hh +")"
-            text.text = hh
-            lis.add(")")
-        }
+
 
     }
 }
