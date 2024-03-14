@@ -65,21 +65,25 @@ class MainActivity : AppCompatActivity() {
                         l = ""
                     }
                 }
-                for (aa in oo.indices) {
-                    num2 = oo[aa].toDouble()
-                    sigh1 = pp[aa]
-                    when (sigh1) {
-                        "+" -> num1 = num1 + num2
-                        "-" -> num1 = num1 - num2
-                        "*" -> num1 = num1 * num2
-                        "/" -> num1 = num1 / num2
-                        "" -> num1 = num1 + num2
-                    }
+                try {
+                    for (aa in oo.indices) {
+                        num2 = oo[aa].toDouble()
+                        sigh1 = pp[aa]
+                        when (sigh1) {
+                            "+" -> num1 = num1 + num2
+                            "-" -> num1 = num1 - num2
+                            "*" -> num1 = num1 * num2
+                            "/" -> num1 = num1 / num2
+                            "" -> num1 = num1 + num2
+                        }
 
-                    num2 = 0.0
+                        num2 = 0.0
+
+                    }
+                }
+                catch(e: Throwable){
 
                 }
-
                 lis.clear()
                 val res: String = num1.toString()
                 text.text = res
@@ -101,14 +105,18 @@ class MainActivity : AppCompatActivity() {
         }
 
         delete.setOnClickListener(){
-            hh = ""
-            text.text = ""
-            lis.removeAt(lis.size - 1)
-           for(pa in lis){
-               hh = hh + pa
+           if(lis.isNotEmpty()) {
+               hh = ""
+               text.text = ""
+               lis.removeAt(lis.size - 1)
+               for (pa in lis) {
+                   hh = hh + pa
+               }
+               text.text = hh
            }
-            text.text = hh
-
+            else{
+                text.text = ""
+           }
 
 
 
@@ -165,29 +173,95 @@ class MainActivity : AppCompatActivity() {
             lis.add("0")
         }
         dott.setOnClickListener(){
-            hh = hh + "."
-            text.text = hh
-            lis.add(".")
+           if(lis.isNotEmpty()) {
+               hh = hh + "."
+               text.text = hh
+               lis.add(".")
+               if (lis[lis.size - 1] == lis[lis.size - 2]) {
+                   lis.removeAt(lis.size - 1)
+               }
+               hh = ""
+               for (ff in lis) {
+                   hh = hh + ff
+               }
+               text.text = hh
+           }
+            else{
+                text.text = ""
+            }
         }
-        pls.setOnClickListener(){
-            hh = hh + "+"
-            text.text = hh
-            lis.add("+")
+        pls.setOnClickListener() {
+            if (lis.isNotEmpty()) {
+                hh = hh + "+"
+                text.text = hh
+                lis.add("+")
+                if (lis[lis.size - 1] == lis[lis.size - 2]) {
+                    lis.removeAt(lis.size - 1)
+                }
+                hh = ""
+                for (ff in lis) {
+                    hh = hh + ff
+                }
+                text.text = hh
+            }
+            else{
+                text.text = ""
+            }
         }
         mns.setOnClickListener(){
+           if(lis.isNotEmpty()){
             hh = hh + "-"
             text.text = hh
             lis.add("-")
-        }
-        tims.setOnClickListener(){
-            hh = hh + "*"
+            if(lis[lis.size - 1] == lis[lis.size - 2]){
+                lis.removeAt(lis.size - 1)
+            }
+            hh = ""
+            for(ff in lis){
+                hh = hh + ff
+            }
             text.text = hh
-            lis.add("*")
+
+        }
+            else{
+                text.text = ""
+           }
+        }
+        tims.setOnClickListener() {
+            if (lis.isNotEmpty()) {
+                hh = hh + "*"
+                text.text = hh
+                lis.add("*")
+                if (lis[lis.size - 1] == lis[lis.size - 2]) {
+                    lis.removeAt(lis.size - 1)
+                }
+                hh = ""
+                for (ff in lis) {
+                    hh = hh + ff
+                }
+                text.text = hh
+            }
+            else{
+                text.text = ""
+            }
         }
         divid.setOnClickListener(){
+           if(lis.isNotEmpty()){
             hh = hh + "/"
             text.text = hh
             lis.add("/")
+            if(lis[lis.size - 1] == lis[lis.size - 2]){
+                lis.removeAt(lis.size - 1)
+            }
+            hh = ""
+            for(ff in lis){
+                hh = hh + ff
+            }
+            text.text = hh
+        }
+            else{
+                text.text = ""
+           }
         }
 
 
