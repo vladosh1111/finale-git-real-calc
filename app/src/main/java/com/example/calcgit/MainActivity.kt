@@ -1,5 +1,6 @@
 package com.example.calcgit
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -30,7 +31,9 @@ class MainActivity : AppCompatActivity() {
         val mns = findViewById<Button>(R.id.minus)
         val tims = findViewById<Button>(R.id.times)
         val divid = findViewById<Button>(R.id.divide)
+        val h = findViewById<Button>(R.id.h)
         val lis = mutableListOf<String>()
+        val lll = mutableListOf<String>()
         var oo = ""
         var hh = ""
 
@@ -38,6 +41,12 @@ class MainActivity : AppCompatActivity() {
 
         egual.setOnClickListener(){
             if(lis.isNotEmpty()) {
+                var rr = ""
+                for(pp in lis){
+                    rr = rr + pp
+                }
+                lll.add(rr)
+                rr = ""
                 val jj = mutableListOf<String>()
                 val pp = mutableListOf<String>()
                 val oo = mutableListOf<String>()
@@ -171,6 +180,11 @@ class MainActivity : AppCompatActivity() {
             hh = hh + "0"
             text.text = hh
             lis.add("0")
+        }
+        h.setOnClickListener(){
+            val intent = Intent(this@MainActivity, historActiv::class.java)
+            intent.putExtra("keyy", lll.toTypedArray())
+            startActivity(intent)
         }
         dott.setOnClickListener(){
            if(lis.isNotEmpty()) {
